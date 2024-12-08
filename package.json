@@ -5,6 +5,10 @@
     "deploy": "yarn build && firebase deploy",
     "dev": "cd ./reactapp && yarn start",
     "build": "cd ./reactapp && yarn build",
-    "test": "cd ./reactapp && yarn"
+    "test": "cd ./reactapp && yarn",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }
