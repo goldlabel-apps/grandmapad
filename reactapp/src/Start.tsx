@@ -27,6 +27,8 @@ const Start: React.FC<StartProps> = ({
 }) => {
 
   const uberedux = useUbereduxSelect(selectUberedux);
+
+  
   const [isExpanded, setIsExpanded] = React.useState(false);
   const darkmode = true;
   const customTheme = config.theme[darkmode ? "dark" : "light"];
@@ -37,6 +39,8 @@ const Start: React.FC<StartProps> = ({
     }, 333);
   };
 
+  if (!uberedux) return null;
+  
   return (
     <Box 
       id={id}

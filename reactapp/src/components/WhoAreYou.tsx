@@ -49,7 +49,7 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
       <Box id={id}>
 
         <CardHeader 
-          avatar={<Avatar src={"/jpg/avatars/who.jpg"} alt={"Who are you?"} />}
+          avatar={<Avatar src={"/svg/favicon.svg"} alt={"Who are you?"} />}
           title={<Typography variant="h4">Who are you?</Typography>}
         />
         
