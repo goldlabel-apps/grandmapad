@@ -7,6 +7,7 @@ import {
   Card,
   CardHeader,
   CardMedia,
+  Typography,
   // CardContent,
   // Typography,
 } from "@mui/material";
@@ -20,17 +21,15 @@ const Hero: React.FC<IHero> = ({ id }) => {
 
   return (
       <Box id={id}>
-        <Card>
+        <Card sx={{minWidth: 320}}>
           
           <CardHeader 
-            avatar={<Avatar src="/svg/favicon.svg" />}
-            title="grandmaPad" />
-          <CardMedia
-            image="/jpg/opengraph.jpg"
-            alt={"config.appTitle"}
-            component="img"
-            height="170"
+            avatar={<Avatar src="/jpg/grandma.jpg" />}
+            title={<Typography variant="h6">
+                      grandmaPad
+                    </Typography>} 
           />
+         
           {/* <CardContent>
             <Grid container spacing={2}>
               <Grid

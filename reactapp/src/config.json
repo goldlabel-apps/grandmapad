@@ -16,8 +16,8 @@
             "icon": "darkmode",
             "primary": "#6E66CD",
             "secondary": "#877FF0",
-            "background": "#6E66CD",
-            "paper": "#877FF0"
+            "background": "#877FF0",
+            "paper": "#6E66CD"
         },
         "light": {
             "defaultDark": false,
@@ -25,8 +25,8 @@
             "icon": "lightmode",
             "primary": "#6E66CD",
             "secondary": "#877FF0",
-            "background": "#6E66CD",
-            "paper": "#877FF0"
+            "background": "#877FF0",
+            "paper": "#6E66CD"
         }
     }
 }

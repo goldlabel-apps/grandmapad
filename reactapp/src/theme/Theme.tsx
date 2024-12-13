@@ -31,7 +31,7 @@ const Theme: React.FC<ThemeWrapper> = ({ theme, children }) => {
     primary = "#F7B500",
     secondary = "#E3EBF0",
     background = darken("#203347", 0.1),
-    // paper = "#203347",
+    paper = "#203347",
   } = theme;
 
   const darkMode = defaultDark;
@@ -48,7 +48,7 @@ const Theme: React.FC<ThemeWrapper> = ({ theme, children }) => {
       },
       background: {
         default: background,
-        paper: lighten(background, 0.05),
+        paper,
       },
     },
   });
