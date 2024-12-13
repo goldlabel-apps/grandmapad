@@ -1,7 +1,7 @@
 {
     "version": "6.3.3",
-    "appTitle": "Goldlabel",
-    "description": "grandmaPad",
+    "appTitle": "grandmaPad",
+    "description": "is an app even your granny will like",
     "twitter": "@milkytlackstoes",
     "url": "https://grandma-pad.com",
     "icon": "grandma",
@@ -9,6 +9,7 @@
     "og": "/jpg/twins.jpg",
     "cdn": "/",
     "themeColor": "#877FF0",
+    "defaultDark": true,
     "theme": {
         "dark": {
             "defaultDark": true,

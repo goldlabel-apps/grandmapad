@@ -1,62 +1,42 @@
 "use client";
 import * as React from "react";
-// import Grid from "@mui/material/Grid2";
 import {
   Avatar,
   Box,
-  Card,
   CardHeader,
-  CardMedia,
-  Typography,
-  // CardContent,
-  // Typography,
 } from "@mui/material";
 
 export interface IHero {
   id: string;
-  options?: any;
-}
+  options?: {
+    avatar?: string;
+    title?: string;
+    subheader?: string;
+  };
+};
 
-const Hero: React.FC<IHero> = ({ id }) => {
+const Hero: React.FC<IHero> = ({ 
+  id,
+  options={
+    avatar: null,
+    title: null,
+    subheader:null,
+  },
+}) => {
 
-  return (
-      <Box id={id}>
-        <Card sx={{minWidth: 320}}>
-          
+  const {
+    avatar,
+    title,
+    subheader,
+  } = options;
+
+  return <Box id={id}>
           <CardHeader 
-            avatar={<Avatar src="/jpg/grandma.jpg" />}
-            title={<Typography variant="h6">
-                      grandmaPad
-                    </Typography>} 
+            avatar={avatar ? <Avatar src={avatar} alt={title} /> : null }
+            title={title}
+            subheader={subheader}
           />
-         
-          {/* <CardContent>
-            <Grid container spacing={2}>
-              <Grid
-                size={{
-                  xs: 12,
-                  sm: 6,
-                }}
-              >
-                <Typography variant="body1" sx={{ mb: 2 }}>
-                  L
-                </Typography>
-              </Grid>
-              <Grid
-                size={{
-                  xs: 12,
-                  sm: 6,
-                }}
-              >
-                <Typography variant="body1" sx={{ mb: 2 }}>
-                  R
-                </Typography>
-              </Grid>
-            </Grid>
-          </CardContent> */}
-        </Card>
-      </Box>
-  );
+        </Box>
 };
 
 export default Hero;

@@ -4,11 +4,19 @@ import * as React from "react";
 import {
   Box,
   Container,
+  ButtonBase,
+  Collapse
 } from "@mui/material";
 import { Theme } from "./theme";
 import {
   Hero,
+  WhoAreYou,
 } from "./components";
+import {
+  // useUbereduxDispatch,
+  useUbereduxSelect,
+  selectUberedux,
+} from "./uberedux";
 
 export interface StartProps {
   id?: string;
@@ -18,8 +26,16 @@ const Start: React.FC<StartProps> = ({
   id = "start",
 }) => {
 
+  const uberedux = useUbereduxSelect(selectUberedux);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const darkmode = true;
   const customTheme = config.theme[darkmode ? "dark" : "light"];
+
+  const handleToggleCollapse = () => {
+    setTimeout(() => {
+      setIsExpanded(prev => !prev);
+    }, 333);
+  };
 
   return (
     <Box 
@@ -33,16 +49,36 @@ const Start: React.FC<StartProps> = ({
     >
       <Theme theme={customTheme}>
         <Container 
-          maxWidth="sm" 
           sx={{ 
             display: 'flex', 
             justifyContent: 'center', 
-            alignItems: 'center' 
+            alignItems: 'center', 
+            flexDirection: 'column',
           }}
         >
-          <Hero id="hero" options={{
-            
-          }} />
+          {isExpanded ? null : <ButtonBase
+            onClick={handleToggleCollapse}
+            sx={{
+              textAlign: "left",
+              width: '100%',
+            }}
+          >
+            <Hero 
+              id="hero" 
+              options={{
+                avatar: config.favicon,
+                title: config.appTitle,
+                subheader: config.description,
+              }} 
+            />
+          </ButtonBase> }
+          
+
+          <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+            <pre>uberredux: {JSON.stringify(uberedux, null, 2)}</pre>
+            <WhoAreYou id="who-are-you"/>
+          </Collapse>
+
         </Container>
       </Theme>
     </Box>
