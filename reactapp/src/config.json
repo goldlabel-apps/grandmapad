@@ -1,0 +1,32 @@
+{
+    "version": "6.3.3",
+    "appTitle": "Goldlabel",
+    "description": "grandmaPad",
+    "twitter": "@milkytlackstoes",
+    "url": "https://grandma-pad.com",
+    "icon": "grandma",
+    "favicon": "/svg/favicon.svg",
+    "og": "/jpg/twins.jpg",
+    "cdn": "/",
+    "themeColor": "#877FF0",
+    "theme": {
+        "dark": {
+            "defaultDark": true,
+            "label": "Dark",
+            "icon": "darkmode",
+            "primary": "#6E66CD",
+            "secondary": "#877FF0",
+            "background": "#6E66CD",
+            "paper": "#877FF0"
+        },
+        "light": {
+            "defaultDark": false,
+            "label": "Light",
+            "icon": "lightmode",
+            "primary": "#6E66CD",
+            "secondary": "#877FF0",
+            "background": "#6E66CD",
+            "paper": "#877FF0"
+        }
+    }
+}

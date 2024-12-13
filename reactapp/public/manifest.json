@@ -3,8 +3,8 @@
   "name": "grandmaPad",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#6e66cd",
-  "background_color": "#6e66cd",
+  "theme_color": "#877FF0",
+  "background_color": "#877FF0",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,9 +12,10 @@
       "type": "image/x-icon"
     },
     {
-      "src": "png/logo192.png",
+      "src": "png/iOS.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "png/logo512.png",
