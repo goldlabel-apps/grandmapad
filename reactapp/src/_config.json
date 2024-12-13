@@ -1,0 +1,32 @@
+{
+    "version": "6.3.3",
+    "appTitle": "Goldlabel",
+    "description": "β",
+    "twitter": "@milkytlackstoes",
+    "url": "https://goldlabel.pro",
+    "icon": "goldlabel",
+    "favicon": "/svg/favicon.svg",
+    "og": "/jpg/twins.jpg",
+    "cdn": "/",
+    "themeColor": "#C09F52",
+    "theme": {
+        "dark": {
+            "defaultDark": true,
+            "label": "Dark",
+            "icon": "darkmode",
+            "primary": "#C09F52",
+            "secondary": "#C09F52",
+            "background": "#C09F52",
+            "paper": "#C09F52"
+        },
+        "light": {
+            "defaultDark": false,
+            "label": "Light",
+            "icon": "lightmode",
+            "primary": "#C09F52",
+            "secondary": "#C09F52",
+            "background": "#C09F52",
+            "paper": "#C09F52"
+        }
+    }
+}
