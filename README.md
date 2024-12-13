@@ -1,2 +1,4 @@
-# grandmapad
-An app for your Granny
+# grandmaPad
+
+Is an app even your Granny will like
+
