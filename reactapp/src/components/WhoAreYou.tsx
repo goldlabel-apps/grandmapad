@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import {
+  CardHeader,
   Avatar,
   Box,
   List,
@@ -19,6 +20,11 @@ const users = [
     nickname: "Gisela",
     role: "grandma",
     avatar: "/jpg/avatars/gisela.jpg",
+  },
+  {
+    nickname: "Stewart",
+    role: "husband",
+    avatar: "/jpg/avatars/stewart.jpg",
   },
   {
     nickname: "Caroline",
@@ -41,9 +47,11 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
 
   return (
       <Box id={id}>
-        <Typography variant="h4" sx={{mb: 2}}>
-          Who are you?
-        </Typography>
+
+        <CardHeader 
+          avatar={<Avatar src={"/jpg/avatars/who.jpg"} alt={"Who are you?"} />}
+          title={<Typography variant="h4">Who are you?</Typography>}
+        />
         
         <List>
           { users.map((user: any, i: number) => {

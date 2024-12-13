@@ -6,6 +6,15 @@ export interface IUberedux {
     darkmode: boolean;
 }
 
+export interface IHero {
+  id: string;
+  options?: {
+    avatar?: string;
+    title?: string;
+    subheader?: string;
+  };
+}
+
 export type RouteType = {
     slug?: string;
     icon?: string;

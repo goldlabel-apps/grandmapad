@@ -68,14 +68,14 @@ const Start: React.FC<StartProps> = ({
               options={{
                 avatar: config.favicon,
                 title: config.appTitle,
-                subheader: config.description,
+                // subheader: config.description,
               }} 
             />
           </ButtonBase> }
           
 
           <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-            <pre>uberredux: {JSON.stringify(uberedux, null, 2)}</pre>
+            {/* <pre>uberredux: {JSON.stringify(uberedux, null, 2)}</pre> */}
             <WhoAreYou id="who-are-you"/>
           </Collapse>
 

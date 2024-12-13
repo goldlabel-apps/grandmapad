@@ -1,19 +1,11 @@
-"use client";
 import * as React from "react";
+import {IHero} from "../types";
 import {
   Avatar,
   Box,
   CardHeader,
+  Typography,
 } from "@mui/material";
-
-export interface IHero {
-  id: string;
-  options?: {
-    avatar?: string;
-    title?: string;
-    subheader?: string;
-  };
-};
 
 const Hero: React.FC<IHero> = ({ 
   id,
@@ -33,7 +25,7 @@ const Hero: React.FC<IHero> = ({
   return <Box id={id}>
           <CardHeader 
             avatar={avatar ? <Avatar src={avatar} alt={title} /> : null }
-            title={title}
+            title={<Typography variant="h4">{title}</Typography>}
             subheader={subheader}
           />
         </Box>
