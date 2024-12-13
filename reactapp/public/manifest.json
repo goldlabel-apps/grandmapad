@@ -12,9 +12,10 @@
       "type": "image/x-icon"
     },
     {
-      "src": "png/logo192.png",
+      "src": "png/iOS.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "png/logo512.png",

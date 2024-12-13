@@ -1,5 +1,5 @@
 "use client";
-import config from "./_config.json";
+import config from "./config.json";
 import * as React from "react";
 import Grid from "@mui/material/Grid2";
 import {
@@ -34,9 +34,7 @@ const Start: React.FC<StartProps> = ({ id }) => {
               }}
             >
               <Typography variant="body1" sx={{ mb: 2 }}>
-                An easy to implement framework based on React & NextJS. Take
-                your slow old WordPress site and make it not only super fast,
-                but rank better in Google.
+                L
               </Typography>
             </Grid>
             <Grid
@@ -46,8 +44,7 @@ const Start: React.FC<StartProps> = ({ id }) => {
               }}
             >
               <Typography variant="body1" sx={{ mb: 2 }}>
-                Modular additions to a NextJS static site generating frontend
-                developed by us
+                R
               </Typography>
             </Grid>
           </Grid>

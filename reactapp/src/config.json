@@ -1,32 +1,32 @@
 {
     "version": "6.3.3",
     "appTitle": "Goldlabel",
-    "description": "β",
+    "description": "grandmaPad",
     "twitter": "@milkytlackstoes",
-    "url": "https://goldlabel.pro",
-    "icon": "goldlabel",
+    "url": "https://grandma-pad.com",
+    "icon": "grandma",
     "favicon": "/svg/favicon.svg",
     "og": "/jpg/twins.jpg",
     "cdn": "/",
-    "themeColor": "#C09F52",
+    "themeColor": "#877FF0",
     "theme": {
         "dark": {
             "defaultDark": true,
             "label": "Dark",
             "icon": "darkmode",
-            "primary": "#C09F52",
-            "secondary": "#C09F52",
-            "background": "#C09F52",
-            "paper": "#C09F52"
+            "primary": "#6E66CD",
+            "secondary": "#877FF0",
+            "background": "#6E66CD",
+            "paper": "#877FF0"
         },
         "light": {
             "defaultDark": false,
             "label": "Light",
             "icon": "lightmode",
-            "primary": "#C09F52",
-            "secondary": "#C09F52",
-            "background": "#C09F52",
-            "paper": "#C09F52"
+            "primary": "#6E66CD",
+            "secondary": "#877FF0",
+            "background": "#6E66CD",
+            "paper": "#877FF0"
         }
     }
 }
