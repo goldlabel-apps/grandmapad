@@ -7,9 +7,14 @@ import {
 import {
   setUbereduxKey,
   selectUberedux,
-  selectDarkmode,
+  selectUserSlug,
+  selectUsers,
+  selectSubheader,
+  selectConfig,
 } from "./reducer";
-import { setDarkmode } from "./actions/setDarkmode";
+import { setUserSlug } from "./actions/setUserSlug";
+import { setSubheader } from "./actions/setSubheader";
+
 
 export {
   Uberedux,
@@ -18,6 +23,10 @@ export {
   useUbereduxDispatch,
   useUbereduxSelect,
   selectUberedux,
-  selectDarkmode,
-  setDarkmode,
+  selectUserSlug,
+  selectUsers,
+  selectSubheader,
+  selectConfig,
+  setSubheader,
+  setUserSlug,
 };

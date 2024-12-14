@@ -1,15 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AppDispatch } from "../../types";
 import { setUbereduxKey } from "../";
 
-
-export const setDarkmode =
-  (
-    darkmode: boolean,
-  ): any =>
-  async (dispatch: AppDispatch) => {
+export const setSubheader = (
+  subheader: string,
+) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(setUbereduxKey({ key: "darkmode", value: darkmode }));
+      dispatch(setUbereduxKey({ key: "subheader", value: subheader }));
     } catch (e: unknown) {
       if (e instanceof Error) {
         dispatch(setUbereduxKey({ key: "error", value: e.message }));

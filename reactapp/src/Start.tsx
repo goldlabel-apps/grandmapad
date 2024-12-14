@@ -1,91 +1,74 @@
-"use client";
-import config from "./config.json";
-import * as React from "react";
-import {
-  Box,
-  Container,
-  ButtonBase,
-  Collapse
-} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Container } from "@mui/material";
 import { Theme } from "./theme";
-import {
-  Hero,
-  WhoAreYou,
-} from "./components";
-import {
-  // useUbereduxDispatch,
-  useUbereduxSelect,
-  selectUberedux,
-} from "./uberedux";
+import { Hero, WhoAreYou } from "./components";
+import { useUbereduxSelect, selectUberedux } from "./uberedux";
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from './firebase'; // Reuse the existing firebase app instance
 
 export interface StartProps {
   id?: string;
 }
 
-const Start: React.FC<StartProps> = ({
-  id = "start",
-}) => {
+const Start: React.FC<StartProps> = ({ id = "start" }) => {
 
   const uberedux = useUbereduxSelect(selectUberedux);
+  const {
+    config,    
+    userSlug,
+  } = uberedux;
 
-  
-  const [isExpanded, setIsExpanded] = React.useState(false);
-  const darkmode = true;
-  const customTheme = config.theme[darkmode ? "dark" : "light"];
+  const [authState, setAuthState] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const handleToggleCollapse = () => {
-    setTimeout(() => {
-      setIsExpanded(prev => !prev);
-    }, 333);
-  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('User signed in:', user);
+        setAuthState(user);
+      } else {
+        console.log('No user signed in');
+        setAuthState(null);
+      }
+      console.log('Loading...');
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  if (!uberedux) return null;
-  
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <Box 
-      id={id}
-      sx={{ 
-        height: '100vh', 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center' 
-      }}
-    >
-      <Theme theme={customTheme}>
-        <Container 
-          sx={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            flexDirection: 'column',
-          }}
-        >
-          {isExpanded ? null : <ButtonBase
-            onClick={handleToggleCollapse}
-            sx={{
-              textAlign: "left",
-              width: '100%',
-            }}
-          >
-            <Hero 
-              id="hero" 
-              options={{
-                avatar: config.favicon,
-                title: config.appTitle,
-                // subheader: config.description,
-              }} 
-            />
-          </ButtonBase> }
-          
-
-          <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-            {/* <pre>uberredux: {JSON.stringify(uberedux, null, 2)}</pre> */}
-            <WhoAreYou id="who-are-you"/>
-          </Collapse>
-
-        </Container>
-      </Theme>
-    </Box>
+    <>  
+      <Box 
+        id={id}
+        sx={{ 
+          height: "100vh", 
+          display: "flex", 
+          justifyContent: "center", 
+          alignItems: "center" 
+        }}>
+        <Theme theme={config.theme.light}>
+          <Container 
+            sx={{ 
+              display: "flex", 
+              justifyContent: "center", 
+              alignItems: "center", 
+              flexDirection: "column",
+            }}>
+              {/* <pre>authState: {JSON.stringify(authState, null, 2)}</pre> */}
+              <Hero 
+                id="hero" 
+                options={{
+                  avatar: config.favicon,
+                  title: config.appTitle,
+                }} 
+              />
+              { !userSlug ? <WhoAreYou id="who-are-you"/> : null }
+          </Container>
+        </Theme>
+      </Box>
+    </>
   );
 };
 

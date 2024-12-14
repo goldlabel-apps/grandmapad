@@ -3,29 +3,39 @@ import {IHero} from "../types";
 import {
   Avatar,
   Box,
+  IconButton,
   CardHeader,
   Typography,
 } from "@mui/material";
+import {
+  useUbereduxSelect,
+  selectSubheader,
+} from "../uberedux";
 
 const Hero: React.FC<IHero> = ({ 
   id,
   options={
     avatar: null,
     title: null,
-    subheader:null,
   },
 }) => {
-
+  const subheader = useUbereduxSelect(selectSubheader);
   const {
     avatar,
     title,
-    subheader,
   } = options;
 
-  return <Box id={id}>
+  const onHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open("/", "_self");
+  };
+
+  return <Box id={id} sx={{minWidth: 320}}>
           <CardHeader 
-            avatar={avatar ? <Avatar src={avatar} alt={title} /> : null }
-            title={<Typography variant="h4">{title}</Typography>}
+            avatar={avatar ? <IconButton onClick={onHomeClick}>
+                                <Avatar src={avatar} alt={title} />
+                              </IconButton> : null }
+            title={<Typography variant="h5">{title}</Typography>}
             subheader={subheader}
           />
         </Box>

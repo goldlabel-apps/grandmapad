@@ -1,10 +1,28 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { ReactNode } from "react";
 import { RootAppState, AppDispatch } from "./uberedux/store";
 
-export interface IUberedux {
-    darkmode: boolean;
+export interface IApp {
+  id: string;
+  children?: React.ReactNode;
 }
+
+export interface IUberedux {
+    config: any;
+    authState: any;
+    subheader: string;
+    userSlug: string | null;
+    users: UserType[] | null;
+    error: any;
+}
+
+export type UserType = {
+    uid: string;
+    email: string;
+    nickname: string;
+    slug: string;
+    role: string;
+    avatar: string;
+};
 
 export interface IHero {
   id: string;
