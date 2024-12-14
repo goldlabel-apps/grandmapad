@@ -20,7 +20,7 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
 
   const [authState, setAuthState] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  if (authState) console.log(authState);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
