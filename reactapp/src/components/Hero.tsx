@@ -10,19 +10,19 @@ import {
 import {
   useUbereduxSelect,
   selectSubheader,
+  selectTitle,
 } from "../uberedux";
 
 const Hero: React.FC<IHero> = ({ 
   id,
   options={
     avatar: null,
-    title: null,
   },
 }) => {
+  const title = useUbereduxSelect(selectTitle);
   const subheader = useUbereduxSelect(selectSubheader);
   const {
     avatar,
-    title,
   } = options;
 
   const onHomeClick = (e: React.MouseEvent) => {

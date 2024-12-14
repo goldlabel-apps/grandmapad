@@ -11,10 +11,11 @@ import {
   selectUsers,
   selectSubheader,
   selectConfig,
+  selectTitle,
 } from "./reducer";
 import { setUserSlug } from "./actions/setUserSlug";
 import { setSubheader } from "./actions/setSubheader";
-
+import { setTitle } from "./actions/setTitle";
 
 export {
   Uberedux,
@@ -29,4 +30,6 @@ export {
   selectConfig,
   setSubheader,
   setUserSlug,
+  selectTitle,
+  setTitle,
 };

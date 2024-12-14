@@ -13,6 +13,7 @@ import {
   selectUsers,
   setUserSlug,
   setSubheader,
+  setTitle,
 } from "../uberedux";
 
 export interface IWhoAreYou {
@@ -23,7 +24,6 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
 
   const users = useUbereduxSelect(selectUsers);
   const dispatch = useUbereduxDispatch();
-
   const onUserClick = (
     user: any,
   ) => {
@@ -33,7 +33,8 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
     } = user;
     
     dispatch(setUserSlug(slug));
-    dispatch(setSubheader(`Hello ${nickname}`))
+    dispatch(setTitle(`Hello ${nickname}`));
+    dispatch(setSubheader("What was the name of our dog?"));
   };
   
   return <List id={id} sx={{minWidth: 320}}>

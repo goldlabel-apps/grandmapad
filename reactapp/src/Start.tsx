@@ -61,7 +61,6 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
                 id="hero" 
                 options={{
                   avatar: config.favicon,
-                  title: config.appTitle,
                 }} 
               />
               { !userSlug ? <WhoAreYou id="who-are-you"/> : null }

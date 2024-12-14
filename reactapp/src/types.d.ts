@@ -9,6 +9,7 @@ export interface IApp {
 export interface IUberedux {
     config: any;
     authState: any;
+    title: string;
     subheader: string;
     userSlug: string | null;
     users: UserType[] | null;
