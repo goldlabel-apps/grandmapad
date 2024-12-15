@@ -1,42 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { Theme } from "./theme";
-import { Hero, WhoAreYou } from "./components";
-import { useUbereduxSelect, selectUberedux } from "./uberedux";
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from './firebase'; // Reuse the existing firebase app instance
+import { Hero, WhoAreYou, Password } from "./components";
+import { 
+  useUbereduxSelect, 
+  selectUberedux,
+  useUbereduxDispatch,
+  setAuthState,
+} from "./uberedux";
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 
 export interface StartProps {
   id?: string;
 }
 
 const Start: React.FC<StartProps> = ({ id = "start" }) => {
-
+  
+  const dispatch = useUbereduxDispatch();
   const uberedux = useUbereduxSelect(selectUberedux);
+  const [loading, setLoading] = useState(true);
   const {
     config,    
-    userSlug,
+    user,
+    authState,
   } = uberedux;
 
-  const [authState, setAuthState] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  if (authState) console.log(authState);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('User signed in:', user);
-        setAuthState(user);
+        dispatch(setAuthState({
+          uid: user.uid,
+          email: user.email,
+          // accessToken: user.accessToken,
+        }));
       } else {
-        console.log('No user signed in');
-        setAuthState(null);
+        dispatch(setAuthState(null));
       }
-      console.log('Loading...');
       setLoading(false);
     });
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return null;
 
   return (
     <>  
@@ -56,14 +62,10 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
               alignItems: "center", 
               flexDirection: "column",
             }}>
-              {/* <pre>authState: {JSON.stringify(authState, null, 2)}</pre> */}
-              <Hero 
-                id="hero" 
-                options={{
-                  avatar: config.favicon,
-                }} 
-              />
-              { !userSlug ? <WhoAreYou id="who-are-you"/> : null }
+              {/*  */}
+              <Hero id="hero" />
+              { !user && !authState ? <WhoAreYou id="who-are-you"/> : null }
+              { !authState && user ? <Password id="password" /> : null }
           </Container>
         </Theme>
       </Box>
@@ -72,3 +74,7 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
 };
 
 export default Start;
+
+/*
+{ authState ? <pre>authState: {JSON.stringify(authState, null, 2)}</pre> : null }
+*/

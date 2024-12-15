@@ -7,15 +7,20 @@ import {
 import {
   setUbereduxKey,
   selectUberedux,
-  selectUserSlug,
+  selectUser,
   selectUsers,
   selectSubheader,
   selectConfig,
   selectTitle,
+  selectAuthState,
+  selectAuthing,
 } from "./reducer";
-import { setUserSlug } from "./actions/setUserSlug";
+import { setUser } from "./actions/setUser";
 import { setSubheader } from "./actions/setSubheader";
 import { setTitle } from "./actions/setTitle";
+import { setAuthState } from "./actions/setAuthState";
+import { authSignIn } from "./actions/authSignIn";
+import { authSignOut } from "./actions/authSignOut";
 
 export {
   Uberedux,
@@ -24,12 +29,17 @@ export {
   useUbereduxDispatch,
   useUbereduxSelect,
   selectUberedux,
-  selectUserSlug,
+  selectUser,
   selectUsers,
   selectSubheader,
   selectConfig,
   setSubheader,
-  setUserSlug,
+  setUser,
   selectTitle,
   setTitle,
+  setAuthState,
+  selectAuthState,
+  selectAuthing,
+  authSignIn,
+  authSignOut,
 };

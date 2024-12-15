@@ -8,6 +8,7 @@ export const initialState: IUberedux = {
     error: null,
     config,
     authState: null,
+    authing: false,
     users,
-    userSlug: null,
+    user: null,
 };

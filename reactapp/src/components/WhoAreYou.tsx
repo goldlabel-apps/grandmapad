@@ -11,7 +11,7 @@ import {
   useUbereduxDispatch,
   useUbereduxSelect,
   selectUsers,
-  setUserSlug,
+  setUser,
   setSubheader,
   setTitle,
 } from "../uberedux";
@@ -28,11 +28,11 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
     user: any,
   ) => {
     const {
-      slug,
+      // slug,
       nickname,
     } = user;
     
-    dispatch(setUserSlug(slug));
+    dispatch(setUser(user));
     dispatch(setTitle(`Hello ${nickname}`));
     dispatch(setSubheader("What was the name of our dog?"));
   };

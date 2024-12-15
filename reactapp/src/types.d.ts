@@ -9,9 +9,10 @@ export interface IApp {
 export interface IUberedux {
     config: any;
     authState: any;
+    authing: boolean;
     title: string;
     subheader: string;
-    userSlug: string | null;
+    user: UserType | null;
     users: UserType[] | null;
     error: any;
 }
@@ -27,11 +28,6 @@ export type UserType = {
 
 export interface IHero {
   id: string;
-  options?: {
-    avatar?: string;
-    title?: string;
-    subheader?: string;
-  };
 }
 
 export type RouteType = {

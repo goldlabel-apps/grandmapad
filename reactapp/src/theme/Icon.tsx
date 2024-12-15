@@ -77,6 +77,7 @@ import ErrorIcon from "@mui/icons-material/ReportProblem";
 import NewuserIcon from "@mui/icons-material/PersonAdd";
 import ViewIcon from "@mui/icons-material/RemoveRedEye";
 import ActivityIcon from "@mui/icons-material/Checklist";
+import SignoutIcon from "@mui/icons-material/ExitToApp";
 
 export interface IconProps {
   icon: IconNames;
@@ -166,6 +167,7 @@ export type IconNames =
   | "delete"
   | "user"
   | "add"
+  | "signout"
   | "adduser"
   | "darkmode"
   | "lightmode"
@@ -180,6 +182,9 @@ const Icon: React.FC<IconProps> = ({ icon, color }) => {
   let iconFragment: JSX.Element = <React.Fragment />;
   
   switch (icon) {
+    case "signout":
+      iconFragment = <SignoutIcon color={c} />;
+      break;    
     case "view":
       iconFragment = <ViewIcon color={c} />;
       break;    
