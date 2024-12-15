@@ -8,25 +8,25 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  useUbereduxDispatch,
+  // useUbereduxDispatch,
   useUbereduxSelect,
   selectSubheader,
   selectTitle,
   selectUser,
   selectAuthState,
-  authSignOut,
+  // authSignOut,
 } from "../uberedux";
-import {Icon} from "../theme";
+// import {Icon} from "../theme";
 
 const Hero: React.FC<IHero> = ({ 
   id,
 }) => {
-  const dispatch = useUbereduxDispatch();
+  // const dispatch = useUbereduxDispatch();
   const title = useUbereduxSelect(selectTitle);
   const subheader = useUbereduxSelect(selectSubheader);
   const user = useUbereduxSelect(selectUser);
   const authState = useUbereduxSelect(selectAuthState);
-  console.log("authState", authState);
+  // console.log("authState", authState);
   let uid = null;
   if (authState){
     uid = authState.uid;
@@ -41,10 +41,10 @@ const Hero: React.FC<IHero> = ({
     window.open("/", "_self");
   };
 
-  const onSignOut = (e: React.MouseEvent) => {
-    e.preventDefault();
-    dispatch(authSignOut());
-  };
+  // const onSignOut = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   dispatch(authSignOut());
+  // };
 
   return <Box id={id} sx={{minWidth: 320}}>
           <CardHeader 
@@ -55,9 +55,9 @@ const Hero: React.FC<IHero> = ({
                     {title}
                   </Typography>}
             subheader={uid ? uid : subheader}
-            action={authState ? <IconButton onClick={onSignOut}>
-                                  <Icon icon="signout" />
-                                </IconButton> : null }
+            // action={authState ? <IconButton onClick={onSignOut}>
+            //                       <Icon icon="signout" />
+            //                     </IconButton> : null }
           />
         </Box>
 };

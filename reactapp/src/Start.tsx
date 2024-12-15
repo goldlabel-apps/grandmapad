@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { Theme } from "./theme";
-import { Hero, WhoAreYou, Password } from "./components";
+import { Hero, WhoAreYou, Password, AppMenu } from "./components";
 import { 
   useUbereduxSelect, 
   selectUberedux,
@@ -62,7 +62,7 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
               alignItems: "center", 
               flexDirection: "column",
             }}>
-              {/*  */}
+              { authState ? <AppMenu id="app-menu" /> : null }
               <Hero id="hero" />
               { !user && !authState ? <WhoAreYou id="who-are-you"/> : null }
               { !authState && user ? <Password id="password" /> : null }
