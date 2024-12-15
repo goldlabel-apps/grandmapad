@@ -28,10 +28,8 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
     user: any,
   ) => {
     const {
-      // slug,
       nickname,
     } = user;
-    
     dispatch(setUser(user));
     dispatch(setTitle(`Hello ${nickname}`));
     dispatch(setSubheader("What was the name of our dog?"));

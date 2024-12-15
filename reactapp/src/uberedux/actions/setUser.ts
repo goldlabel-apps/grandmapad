@@ -2,7 +2,7 @@ import { AppDispatch } from "../../types";
 import { setUbereduxKey } from "../";
 
 export const setUser = (
-    user: string,
+    user: any,
 ) => async (dispatch: AppDispatch) => {
     try {
       dispatch(setUbereduxKey({ key: "user", value: user }));

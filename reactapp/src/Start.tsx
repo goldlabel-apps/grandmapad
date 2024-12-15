@@ -1,46 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { Theme } from "./theme";
-import { Hero, WhoAreYou, Password, AppMenu } from "./components";
+import { 
+  AppMenu, 
+  AuthedUser,
+  Hero, 
+  WhoAreYou, 
+  Password, 
+} from "./components";
 import { 
   useUbereduxSelect, 
   selectUberedux,
   useUbereduxDispatch,
   setAuthState,
+  setUser,
 } from "./uberedux";
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { auth } from './firebase';
 
 export interface StartProps {
   id?: string;
 }
 
+export interface User {
+  uid: string;
+  email: string;
+  nickname?: string;
+  slug?: string;
+  role?: string;
+  avatar?: string;
+}
+
+export interface UbereduxState {
+  config: { theme: { light: any } };
+  user: User | null;
+  users: User[];
+  authState: any;
+}
+
 const Start: React.FC<StartProps> = ({ id = "start" }) => {
   
   const dispatch = useUbereduxDispatch();
-  const uberedux = useUbereduxSelect(selectUberedux);
-  const [loading, setLoading] = useState(true);
-  const {
-    config,    
-    user,
-    authState,
-  } = uberedux;
+  const uberedux = useUbereduxSelect(selectUberedux) as UbereduxState;
+  const [loading, setLoading] = useState<boolean>(true);
+  const { config, user, users, authState } = uberedux;
+  const getUserByUid = (users: User[], uid: string): User | undefined => 
+    users.find((user) => user.uid === uid);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(setAuthState({
-          uid: user.uid,
-          email: user.email,
-          // accessToken: user.accessToken,
-        }));
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
+      if (firebaseUser) {
+        const thisUser = getUserByUid(users, firebaseUser.uid);
+        dispatch(setAuthState({uid: firebaseUser.uid}));
+        dispatch(setUser(thisUser ?? null));
       } else {
         dispatch(setAuthState(null));
       }
       setLoading(false);
     });
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [dispatch, users]);
 
   if (loading) return null;
 
@@ -53,19 +72,35 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center" 
-        }}>
+        }}
+      >
         <Theme theme={config.theme.light}>
           <Container 
+            maxWidth="xs"
             sx={{ 
               display: "flex", 
               justifyContent: "center", 
               alignItems: "center", 
               flexDirection: "column",
-            }}>
-              { authState ? <AppMenu id="app-menu" /> : null }
-              <Hero id="hero" />
-              { !user && !authState ? <WhoAreYou id="who-are-you"/> : null }
-              { !authState && user ? <Password id="password" /> : null }
+            }}
+          > 
+            <Box 
+              id="main"
+              sx={{
+                display: "block",
+                width: "100%",
+              }}
+            >
+              {!authState && <Hero id="hero" />}
+              {!user && !authState && <WhoAreYou id="who-are-you" />}
+              {!authState && user && <Password id="password" />}
+              {authState && (
+                <>
+                  <AppMenu id="app-menu" />
+                  <AuthedUser id="authed-user" />
+                </>
+              )}
+            </Box>
           </Container>
         </Theme>
       </Box>
@@ -74,7 +109,3 @@ const Start: React.FC<StartProps> = ({ id = "start" }) => {
 };
 
 export default Start;
-
-/*
-{ authState ? <pre>authState: {JSON.stringify(authState, null, 2)}</pre> : null }
-*/
