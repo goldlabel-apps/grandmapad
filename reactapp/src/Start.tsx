@@ -25,6 +25,7 @@ const Start: React.FC<IStart> = ({ id }) => {
   const dispatch = useUbereduxDispatch();
   const uberedux = useUbereduxSelect(selectUberedux);
   const { config, authUid } = uberedux;
+  const [authStateInitialized, setAuthStateInitialized] = React.useState(false);
 
   React.useEffect(() => {
     const auth = getAuth();
@@ -34,10 +35,13 @@ const Start: React.FC<IStart> = ({ id }) => {
       } else {
         dispatch(setAuthUid(null));
       }
+      setAuthStateInitialized(true);
     });
     return () => unsubscribe();
   }, [dispatch]);
 
+  if (!authStateInitialized) return null;
+  
   return (
     <Box 
       id={id}
@@ -66,7 +70,3 @@ const Start: React.FC<IStart> = ({ id }) => {
 };
 
 export default Start;
-
-{/* 
-  <pre>authUid: {JSON.stringify(authUid, null, 2)}</pre>   
-*/}

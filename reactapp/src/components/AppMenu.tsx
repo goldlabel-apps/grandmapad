@@ -8,7 +8,13 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import { Icon } from "../theme";
-import { useUbereduxDispatch, authSignOut } from "../uberedux";
+import { 
+  useUbereduxDispatch, 
+  useUbereduxSelect,
+  // selectUser,
+  selectAuthUid,
+  authSignOut,
+} from "../uberedux";
 
 export interface IAppMenu {
   id: string;
@@ -19,6 +25,7 @@ const AppMenu: React.FC<IAppMenu> = ({ id }) => {
   const dispatch = useUbereduxDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
+  const authUid = useUbereduxSelect(selectAuthUid);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +40,10 @@ const AppMenu: React.FC<IAppMenu> = ({ id }) => {
 
   return (
     <>
+      <Box>
+        <pre>authUid: {JSON.stringify(authUid, null, 2)}</pre>  
+      </Box>
+
       <Box 
         id={id} 
         sx={{
