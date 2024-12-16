@@ -13,7 +13,6 @@ import {
   useUbereduxSelect,
   useUbereduxDispatch,
   selectUser,
-  // selectAuthState,
   selectAuthing,
   authSignIn,
 } from "../uberedux";
@@ -28,7 +27,6 @@ const Password: React.FC<IPassword> = ({ id }) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
   const [password, setPassword] = React.useState<string>("");
   const user = useUbereduxSelect(selectUser);
-  // const authState = useUbereduxSelect(selectAuthState);
   const authing = useUbereduxSelect(selectAuthing);
 
   if (!user) return null;
@@ -87,12 +85,13 @@ const Password: React.FC<IPassword> = ({ id }) => {
           }
         />
         {isPasswordValid ? <Button
+          fullWidth
           variant="contained"
           onClick={onSignIn}
           sx={{ my: 2 }}
         >
           Sign in
-        </Button> : null }
+        </Button> : <Box sx={{ height: 32 }} /> }
         
 
         {/* <pre>user: {JSON.stringify(user, null, 2)}</pre> */}

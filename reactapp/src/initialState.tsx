@@ -7,7 +7,7 @@ export const initialState: IUberedux = {
     subheader: "Who are you?",
     error: null,
     config,
-    authState: null,
+    authUid: null,
     authing: false,
     users,
     user: null,

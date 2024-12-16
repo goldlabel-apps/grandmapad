@@ -8,8 +8,8 @@ export interface IApp {
 
 export interface IUberedux {
     config: any;
-    authState: any;
     authing: boolean;
+    authUid: string | null;
     title: string;
     subheader: string;
     user: UserType | null;
