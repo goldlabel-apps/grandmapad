@@ -67,7 +67,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import AddUserIcon from "@mui/icons-material/PersonAdd";
 import SaveIcon from "@mui/icons-material/Save";
-import HideIcon from "@mui/icons-material/VisibilityOff";
 import DarkmodeIcon from "@mui/icons-material/DarkMode";
 import LightmodeIcon from "@mui/icons-material/LightMode";
 import SuccessIcon from "@mui/icons-material/Check";
@@ -78,6 +77,8 @@ import NewuserIcon from "@mui/icons-material/PersonAdd";
 import ViewIcon from "@mui/icons-material/RemoveRedEye";
 import ActivityIcon from "@mui/icons-material/Checklist";
 import SignoutIcon from "@mui/icons-material/ExitToApp";
+import ShowIcon from "@mui/icons-material/Visibility";
+import HideIcon from "@mui/icons-material/VisibilityOff";
 
 export interface IconProps {
   icon: IconNames;
@@ -86,6 +87,7 @@ export interface IconProps {
 
 export type IconNames =
   | "view"
+  | "show"
   | "success"
   | "activity"
   | "info"
@@ -182,6 +184,9 @@ const Icon: React.FC<IconProps> = ({ icon, color }) => {
   let iconFragment: JSX.Element = <React.Fragment />;
   
   switch (icon) {
+    case "show":
+      iconFragment = <ShowIcon color={c} />;
+      break;    
     case "signout":
       iconFragment = <SignoutIcon color={c} />;
       break;    

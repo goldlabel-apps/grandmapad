@@ -13,7 +13,6 @@ import {
 import { Theme } from "./theme";
 import { 
   AppMenu,
-  Hero,
   Password,
 } from "./components";
 
@@ -50,21 +49,17 @@ const Start: React.FC<IStart> = ({ id }) => {
       }}
     >
       <Theme theme={config.theme.light}>
-      <Container maxWidth="xs"
-        sx={{ 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          flexDirection: "column",
-        }}> 
-  
-        <Hero id="hero" />
-      
-        { authUid ? <>
-          <AppMenu id="app-menu" />
-        </> : <Password id="password" /> }
-
-      </Container>
+        <Container maxWidth="xs"
+          sx={{ 
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            flexDirection: "column",
+          }}> 
+          { authUid ? <>
+            <AppMenu id="app-menu" />
+          </> : <Password id="password" /> }
+        </Container>
       </Theme>
     </Box>
   );
