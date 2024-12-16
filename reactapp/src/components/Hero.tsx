@@ -13,7 +13,7 @@ import {
   selectSubheader,
   selectTitle,
   selectUser,
-  selectAuthState,
+  selectAuthUid,
   // authSignOut,
 } from "../uberedux";
 // import {Icon} from "../theme";
@@ -25,12 +25,8 @@ const Hero: React.FC<IHero> = ({
   const title = useUbereduxSelect(selectTitle);
   const subheader = useUbereduxSelect(selectSubheader);
   const user = useUbereduxSelect(selectUser);
-  const authState = useUbereduxSelect(selectAuthState);
-  // console.log("authState", authState);
-  let uid = null;
-  if (authState){
-    uid = authState.uid;
-  }
+  const authUid = useUbereduxSelect(selectAuthUid);
+
   let avatar = "/svg/favicon.svg";
   if (user){
     avatar = user.avatar;
@@ -52,12 +48,9 @@ const Hero: React.FC<IHero> = ({
                                 <Avatar src={avatar} alt={title} />
                               </IconButton> : null }
             title={<Typography variant="h5">
-                    {title}
+                    { title }
                   </Typography>}
-            subheader={uid ? uid : subheader}
-            // action={authState ? <IconButton onClick={onSignOut}>
-            //                       <Icon icon="signout" />
-            //                     </IconButton> : null }
+            subheader={ authUid ? authUid : subheader }
           />
         </Box>
 };

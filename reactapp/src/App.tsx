@@ -12,10 +12,8 @@ const App: React.FC<IApp> = ({
 }) => {
 
   return <Uberedux>
-          <Box id={id} >
-            <Start />
-            {children}
-          </Box>
+          <Start id={id} />
+          {children}
         </Uberedux>
 };
 

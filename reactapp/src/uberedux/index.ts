@@ -12,13 +12,13 @@ import {
   selectSubheader,
   selectConfig,
   selectTitle,
-  selectAuthState,
   selectAuthing,
+  selectAuthUid,
 } from "./reducer";
 import { setUser } from "./actions/setUser";
 import { setSubheader } from "./actions/setSubheader";
 import { setTitle } from "./actions/setTitle";
-import { setAuthState } from "./actions/setAuthState";
+import { setAuthUid } from "./actions/setAuthUid";
 import { authSignIn } from "./actions/authSignIn";
 import { authSignOut } from "./actions/authSignOut";
 
@@ -37,9 +37,9 @@ export {
   setUser,
   selectTitle,
   setTitle,
-  setAuthState,
-  selectAuthState,
+  setAuthUid,
   selectAuthing,
   authSignIn,
   authSignOut,
+  selectAuthUid,
 };

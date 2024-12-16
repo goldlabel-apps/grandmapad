@@ -12,7 +12,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
   useUbereduxSelect,
   useUbereduxDispatch,
-  selectUser,
   selectAuthing,
   authSignIn,
 } from "../uberedux";
@@ -26,14 +25,10 @@ const Password: React.FC<IPassword> = ({ id }) => {
   const dispatch = useUbereduxDispatch();
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
   const [password, setPassword] = React.useState<string>("");
-  const user = useUbereduxSelect(selectUser);
   const authing = useUbereduxSelect(selectAuthing);
 
-  if (!user) return null;
-  const { email } = user;
-
   const onSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(authSignIn(email, password));
+    dispatch(authSignIn(password));
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -50,13 +45,9 @@ const Password: React.FC<IPassword> = ({ id }) => {
     e.preventDefault();
   };
 
-
-
   const isPasswordValid = password.length >= 6;
 
-  return (
-    <>
-
+  return <>
     { !authing ? <Box 
         id={id} 
         component={"form"}
@@ -84,22 +75,16 @@ const Password: React.FC<IPassword> = ({ id }) => {
             </InputAdornment>
           }
         />
-        {isPasswordValid ? <Button
+        <Button
           fullWidth
+          disabled={!isPasswordValid}
           variant="contained"
           onClick={onSignIn}
-          sx={{ my: 2 }}
-        >
+          sx={{ my: 2 }}>
           Sign in
-        </Button> : <Box sx={{ height: 32 }} /> }
-        
-
-        {/* <pre>user: {JSON.stringify(user, null, 2)}</pre> */}
-        {/* <pre>authState: {JSON.stringify(authState, null, 2)}</pre> */}
+        </Button>
       </Box> : <LinearProgress /> }
-      
     </>
-  );
 };
 
 export default Password;

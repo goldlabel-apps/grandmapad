@@ -1,12 +1,11 @@
 import { AppDispatch } from "../../types";
 import { setUbereduxKey } from "../";
 
-export const setAuthState = (
-    authState: any,
+export const setAuthUid = (
+  authUid: string | null,
 ) => async (dispatch: AppDispatch) => {
     try {
-      // console.log("setAuthState", authState);
-      dispatch(setUbereduxKey({ key: "authState", value: authState }));
+      dispatch(setUbereduxKey({ key: "authUid", value: authUid }));
     } catch (e: unknown) {
       if (e instanceof Error) {
         dispatch(setUbereduxKey({ key: "error", value: e.message }));

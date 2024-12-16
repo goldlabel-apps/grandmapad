@@ -4,10 +4,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const authSignIn = (
-    email: string,
-    password: string,
+  // email: string = "grandma@grandma-pad.com",
+  password: string,
 ) => async (dispatch: AppDispatch) => {
     try {
+      const email = "christopher@grandma-pad.com";
       dispatch(setUbereduxKey({ key: "authing", value: true }));
       await signInWithEmailAndPassword(auth, email, password);
     } catch (e: unknown) {

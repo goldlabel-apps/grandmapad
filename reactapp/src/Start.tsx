@@ -1,107 +1,77 @@
-import React, { useEffect } from "react";
-import { Box, Container } from "@mui/material";
-import { Theme } from "./theme";
+import * as React from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { 
-  AppMenu, 
-  AuthedUser,
-  Hero, 
-  WhoAreYou, 
-  Password, 
-} from "./components";
+  Box,
+  Container,
+} from "@mui/material";
 import { 
   useUbereduxSelect, 
-  selectUberedux,
-  useUbereduxDispatch,
-  setAuthState,
-  setUser,
+  useUbereduxDispatch, 
+  selectUberedux, 
+  setAuthUid 
 } from "./uberedux";
-import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
-import { auth } from './firebase';
+import { Theme } from "./theme";
+import { 
+  AppMenu,
+  Hero,
+  Password,
+} from "./components";
 
-export interface StartProps {
-  id?: string;
-}
+export interface IStart {
+  id: string;
+};
 
-export interface User {
-  uid: string;
-  email: string;
-  nickname?: string;
-  slug?: string;
-  role?: string;
-  avatar?: string;
-}
+const Start: React.FC<IStart> = ({ id }) => {
 
-export interface UbereduxState {
-  config: { theme: { light: any } };
-  user: User | null;
-  users: User[];
-  authState: any;
-}
-
-const Start: React.FC<StartProps> = ({ id = "start" }) => {
-  
   const dispatch = useUbereduxDispatch();
-  const uberedux = useUbereduxSelect(selectUberedux) as UbereduxState;
-  const { config, user, users, authState } = uberedux;
-  const getUserByUid = (users: User[], uid: string): User | undefined => 
-    users.find((user) => user.uid === uid);
+  const uberedux = useUbereduxSelect(selectUberedux);
+  const { config, authUid } = uberedux;
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
-  //     if (firebaseUser) {
-  //       const thisUser = getUserByUid(users, firebaseUser.uid);
-  //       dispatch(setAuthState({uid: firebaseUser.uid}));
-  //       dispatch(setUser(thisUser ?? null));
-  //     } else {
-  //       dispatch(setAuthState(null));
-  //     }
-  //   });
-  //   return () => unsubscribe();
-  // }, [dispatch, users]);
+  React.useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setAuthUid(user.uid));
+      } else {
+        dispatch(setAuthUid(null));
+      }
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
 
   return (
-    <>  
-      <Box 
-        id={id}
+    <Box 
+      id={id}
+      sx={{ 
+        height: "100vh", 
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center" 
+      }}
+    >
+      <Theme theme={config.theme.light}>
+      <Container maxWidth="xs"
         sx={{ 
-          height: "100vh", 
           display: "flex", 
           justifyContent: "center", 
-          alignItems: "center" 
-        }}
-      >
-        <Theme theme={config.theme.light}>
-          <Container 
-            maxWidth="xs"
-            sx={{ 
-              display: "flex", 
-              justifyContent: "center", 
-              alignItems: "center", 
-              flexDirection: "column",
-            }}
-          > 
-            <Box 
-              id="main"
-              sx={{
-                display: "block",
-                width: "100%",
-              }}
-            >
-              {!authState && <Hero id="hero" />}
-              {!user && !authState && <WhoAreYou id="who-are-you" />}
-              {!authState && user && <Password id="password" />}
-              {authState && (
-                <>
-                  <AppMenu id="app-menu" />
-                  <AuthedUser id="authed-user" />
-                </>
-              )}
-            </Box>
-          </Container>
-        </Theme>
-      </Box>
-    </>
+          alignItems: "center", 
+          flexDirection: "column",
+        }}> 
+  
+        <Hero id="hero" />
+      
+        { authUid ? <>
+          <AppMenu id="app-menu" />
+        </> : <Password id="password" /> }
+
+      </Container>
+      </Theme>
+    </Box>
   );
 };
 
 export default Start;
+
+{/* 
+  <pre>authUid: {JSON.stringify(authUid, null, 2)}</pre>   
+*/}
