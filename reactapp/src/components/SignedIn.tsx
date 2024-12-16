@@ -11,21 +11,22 @@ import { Icon } from "../theme";
 import { 
   useUbereduxDispatch, 
   useUbereduxSelect,
-  // selectUser,
-  selectAuthUid,
   authSignOut,
+  selectUberedux,
+  setUser,
 } from "../uberedux";
 
-export interface IAppMenu {
+export interface ISignedIn {
   id: string;
 }
 
-const AppMenu: React.FC<IAppMenu> = ({ id }) => {
+const SignedIn: React.FC<ISignedIn> = ({ id }) => {
 
   const dispatch = useUbereduxDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
-  const authUid = useUbereduxSelect(selectAuthUid);
+  const uberedux = useUbereduxSelect(selectUberedux);
+  const { authUid, user, users } = uberedux;
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,10 +39,17 @@ const AppMenu: React.FC<IAppMenu> = ({ id }) => {
     handleMenuClose();
   };
 
+    React.useEffect(() => {
+      if (!user){
+        const user = users?.find(user => user.uid === authUid);
+        dispatch(setUser(user));
+      };
+    }, [authUid, user, users, dispatch]);
+
   return (
     <>
       <Box>
-        <pre>authUid: {JSON.stringify(authUid, null, 2)}</pre>  
+        <pre>user: {JSON.stringify(user, null, 2)}</pre>  
       </Box>
 
       <Box 
@@ -83,4 +91,4 @@ const AppMenu: React.FC<IAppMenu> = ({ id }) => {
   );
 };
 
-export default AppMenu;
+export default SignedIn;

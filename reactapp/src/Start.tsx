@@ -12,7 +12,7 @@ import {
 } from "./uberedux";
 import { Theme } from "./theme";
 import { 
-  AppMenu,
+  SignedIn,
   Password,
 } from "./components";
 
@@ -46,23 +46,16 @@ const Start: React.FC<IStart> = ({ id }) => {
     <Box 
       id={id}
       sx={{ 
-        height: "100vh", 
-        display: "flex", 
-        justifyContent: "center", 
-        alignItems: "center" 
-      }}
-    >
+        height: "100vh", display: "flex", 
+        justifyContent: "center", alignItems: "center" 
+      }}>
       <Theme theme={config.theme.light}>
         <Container maxWidth="xs"
           sx={{ 
-            display: "flex", 
-            justifyContent: "center", 
-            alignItems: "center", 
-            flexDirection: "column",
+            display: "flex", justifyContent: "center", 
+            alignItems: "center", flexDirection: "column",
           }}> 
-          { authUid ? <>
-            <AppMenu id="app-menu" />
-          </> : <Password id="password" /> }
+          { authUid ? <SignedIn id="signed-in" /> : <Password id="password" /> }
         </Container>
       </Theme>
     </Box>

@@ -1,17 +1,15 @@
 import Hero from "./Hero";
 import WhoAreYou from "./WhoAreYou";
 import Password from "./Password";
-import AppMenu from "./AppMenu";
-import AuthedUser from "./AuthedUser";
+import SignedIn from "./SignedIn";
 import MessageList from "./MessageList";
-import MessageWrite from "./AuthedUser";
+import MessageWrite from "./MessageWrite";
 
 export {
     Hero,
     WhoAreYou,
     Password,
-    AppMenu,
-    AuthedUser,
+    SignedIn,
     MessageWrite,
     MessageList,
 };
