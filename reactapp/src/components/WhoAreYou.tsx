@@ -5,7 +5,6 @@ import {
   ListItemButton,
   ListItemAvatar,
   ListItemText,
-  Typography,
 } from "@mui/material";
 import {
   useUbereduxDispatch,
@@ -44,13 +43,12 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
             return <ListItemButton 
                       key={`user_${i}`}
                       onClick={() => { onUserClick(user); }}>
-                      <ListItemText 
-                        primary={<Typography variant="h6">
-                                  {nickname}
-                                </Typography>} />
                       <ListItemAvatar>
                         <Avatar src={avatar} alt={nickname}/>
                       </ListItemAvatar>
+                      <ListItemText 
+                        primary={nickname} />
+                      
                     </ListItemButton>;
           })}
         </List>

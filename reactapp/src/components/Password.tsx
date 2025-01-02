@@ -1,7 +1,10 @@
 import * as React from "react";
 import {
   Box,
-  OutlinedInput,
+  Card,
+  CardContent,
+  CardActions,
+  FilledInput,
   InputAdornment,
   IconButton,
   Button,
@@ -52,54 +55,49 @@ const Password: React.FC<IPassword> = ({ id }) => {
 
   const isPasswordValid = password.length >= 6;
 
-  return <>
-      {/* <pre>(user: {JSON.stringify(user, null, 2)}</pre>    */}
+  return <Card sx={{width: 320}}>
       <Hero id="hero" />
       { !user ? <WhoAreYou id="who-are-you"/> : <>
         { !authing ? <Box 
             id={id} 
             component={"form"}
-            sx={{ my: 2 }}
-          >
-            <OutlinedInput
-              fullWidth
-              autoFocus
-              autoComplete="new-password"
-              id="filled-adornment-password"
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={handlePasswordChange}
-              startAdornment={
-                <InputAdornment position="start">
-                  <IconButton
-                    sx={{mr:1}}
-                    aria-label={showPassword ? 'hide the password' : 'display the password'}
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    onMouseUp={handleMouseUpPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <Icon icon="hide" /> : <Icon icon="show" />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-            <Button
-              fullWidth
+            sx={{ my: 2 }}>
+            <CardContent>
+              <FilledInput
+                fullWidth
+                autoFocus
+                autoComplete="new-password"
+                id="filled-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={handlePasswordChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      sx={{mr:1}}
+                      aria-label={showPassword ? 'hide the password' : 'display the password'}
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      onMouseUp={handleMouseUpPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <Icon icon="hide" /> : <Icon icon="show" />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </CardContent>
+            { isPasswordValid ? <CardActions>
+              <Box sx={{ flexGrow: 1 }} />
+              <Button 
               disabled={!isPasswordValid}
               variant="contained"
-              onClick={onSignIn}
-              sx={{ my: 2 }}>
+              onClick={onSignIn}>
               Sign in
-            </Button>
+            </Button></CardActions> : null }
           </Box> : <LinearProgress /> }
-      
       </> }
-    
-
-
-    
-    </>
+    </Card>
 };
 
 export default Password;
