@@ -5,7 +5,6 @@ import {
   ListItemButton,
   ListItemAvatar,
   ListItemText,
-  Typography,
 } from "@mui/material";
 import {
   useUbereduxDispatch,
@@ -35,7 +34,7 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
     dispatch(setSubheader("What was the name of our dog?"));
   };
   
-  return <List id={id} sx={{minWidth: 320}}>
+  return <List id={id} sx={{minWidth: 500}}>
           { users?.map((user: any, i: number) => {
             const {
               nickname,
@@ -44,13 +43,12 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
             return <ListItemButton 
                       key={`user_${i}`}
                       onClick={() => { onUserClick(user); }}>
-                      <ListItemText 
-                        primary={<Typography variant="h6">
-                                  {nickname}
-                                </Typography>} />
                       <ListItemAvatar>
                         <Avatar src={avatar} alt={nickname}/>
                       </ListItemAvatar>
+                      <ListItemText 
+                        primary={nickname} />
+                      
                     </ListItemButton>;
           })}
         </List>

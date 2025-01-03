@@ -26,10 +26,6 @@ export type UserType = {
     avatar: string;
 };
 
-export interface IHero {
-  id: string;
-}
-
 export type RouteType = {
     slug?: string;
     icon?: string;

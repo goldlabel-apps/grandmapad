@@ -1,5 +1,8 @@
 import * as React from "react";
 import {
+  Avatar,
+  Card,
+  CardHeader,
   Box,
   IconButton,
   Menu,
@@ -15,6 +18,9 @@ import {
   selectUberedux,
   setUser,
 } from "../uberedux";
+import {
+  MessageWrite,
+} from "./";
 
 export interface ISignedIn {
   id: string;
@@ -39,30 +45,40 @@ const SignedIn: React.FC<ISignedIn> = ({ id }) => {
     handleMenuClose();
   };
 
-    React.useEffect(() => {
-      if (!user){
-        const user = users?.find(user => user.uid === authUid);
-        dispatch(setUser(user));
-      };
-    }, [authUid, user, users, dispatch]);
+  React.useEffect(() => {
+    if (!user){
+      const user = users?.find(user => user.uid === authUid);
+      dispatch(setUser(user));
+    };
+  }, [authUid, user, users, dispatch]);
+
+  if (!user) return null;
+  const {
+    avatar,
+    nickname,
+  } = user as any;
 
   return (
-    <>
+    <Card sx={{ width: 500 }}>
       <Box>
-        <pre>user: {JSON.stringify(user, null, 2)}</pre>  
+        <MessageWrite id="message-write" />
+        <CardHeader 
+          avatar={<Avatar src={avatar} alt={nickname} />}
+          title={nickname}
+        />
       </Box>
 
       <Box 
         id={id} 
         sx={{
           position: 'fixed',
-          bottom: 16,
-          right: 16,
+          bottom: 8,
+          right: 8,
         }}
       >
         <IconButton 
           onClick={handleMenuOpen} 
-          color="secondary">
+          color="inherit">
           <Icon icon="menu" />
         </IconButton>
       </Box>
@@ -87,7 +103,7 @@ const SignedIn: React.FC<ISignedIn> = ({ id }) => {
         </ListItemButton>
 
       </Menu>
-    </>
+    </Card>
   );
 };
 
