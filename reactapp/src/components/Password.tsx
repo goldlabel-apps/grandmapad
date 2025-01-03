@@ -20,7 +20,6 @@ import {
 } from "../uberedux";
 import {
   WhoAreYou,
-  Hero,
 } from "../components";
 
 export interface IPassword {
@@ -55,8 +54,7 @@ const Password: React.FC<IPassword> = ({ id }) => {
 
   const isPasswordValid = password.length >= 6;
 
-  return <Card sx={{width: 320}}>
-      <Hero id="hero" />
+  return <Card sx={{width: 500}}>
       { !user ? <WhoAreYou id="who-are-you"/> : <>
         { !authing ? <Box 
             id={id} 

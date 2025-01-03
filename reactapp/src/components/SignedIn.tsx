@@ -59,7 +59,7 @@ const SignedIn: React.FC<ISignedIn> = ({ id }) => {
   } = user as any;
 
   return (
-    <Card sx={{ width: 320 }}>
+    <Card sx={{ width: 500 }}>
       <Box>
         <MessageWrite id="message-write" />
         <CardHeader 

@@ -34,7 +34,7 @@ const WhoAreYou: React.FC<IWhoAreYou> = ({ id }) => {
     dispatch(setSubheader("What was the name of our dog?"));
   };
   
-  return <List id={id} sx={{minWidth: 320}}>
+  return <List id={id} sx={{minWidth: 500}}>
           { users?.map((user: any, i: number) => {
             const {
               nickname,
